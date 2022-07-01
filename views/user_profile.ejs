@@ -1,0 +1,26 @@
+<h1>User Pofile</h1>
+
+
+<div class="card m-3 p-3" >
+    <%if(locals.user && locals.user['id']===req_user.id ) { %>
+        <form action="/users/update/<%= req_user.id%>" method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">YourName</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<%=user.name%>" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" value="<%=user.email%>" required>
+            </div>
+            <div class="mb-3 d-flex flex-row-reverse">
+                <button type="submit" class="btn btn-dark">UpDate</button>
+            </div>
+        </form>
+    <% } else {%>
+    <div class="d-flex flex-column">
+        <div class="card m-2 p-2 text-center">Name : <%= req_user.name %></div>
+        <div class="card m-2 p-2 d-flex text-center">Email : <%= req_user.email %></div>
+    </div>
+    <% } %>
+
+</div>

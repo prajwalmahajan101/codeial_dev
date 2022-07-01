@@ -1,0 +1,30 @@
+<h1>Sign UP</h1>
+
+<div class="card m-3 p-3">
+    <form action="/users/create" method="post" onsubmit="return validateRecaptcha();">
+        <div class="mb-3">
+            <label for="name" class="form-label">YourName</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+        </div>
+        <div class="mb-3">
+            <label for="password_1" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" id="password_1" placeholder="Password" required>
+        </div>
+        <div class="mb-3">
+            <label for="password_2" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" name="confirm_password" id="password_2" placeholder="Confirm Password" required>
+        </div>
+        <div class="g-recaptcha m-3" data-sitekey="<%=key%>"></div>
+        <div class="mb-3 d-flex flex-row-reverse justify-content-around">
+            <a class="text-decoration-none" href="/users/auth/google">
+                <button type="button" class="btn btn-primary text-dark fw-bolder">Sign Up with Google</button> </a>
+            <button type="submit" class="btn btn-dark">Sign Up</button>
+        </div>
+    </form>
+
+
+</div>

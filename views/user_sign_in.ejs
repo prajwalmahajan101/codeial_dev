@@ -1,0 +1,30 @@
+<h1>Sign IN</h1>
+
+
+<div class="card m-3 p-3" >
+    <form action="/users/create-session" method="post" onsubmit="return validateRecaptcha();">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+        </div>
+        <div class="mb-3">
+            <label for="password_1" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" id="password_1" placeholder="Password" required>
+        </div>
+        <div class="g-recaptcha m-3" data-sitekey="<%= key%>"></div>
+        <div class="mb-3 d-flex flex-row-reverse justify-content-around">
+            <a class="text-decoration-none" href="/users/auth/google">
+                <button type="button" class="btn btn-primary text-dark fw-bolder">Sign in with Google</button>
+            </a>
+            <a class="text-decoration-none" href="/users/forget-password">
+                <button type="button" class="btn btn-danger btn-outline-primary text-dark fw-bolder">
+                    Forget Password
+                </button>
+            </a>
+            <button type="submit" class="btn btn-dark">Sign In</button>
+        </div>
+    </form>
+
+
+</div>
+

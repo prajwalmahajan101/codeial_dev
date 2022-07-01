@@ -1,0 +1,22 @@
+
+        <% for(comment of post.comments) {%>
+            <li>
+                <div class="card h3 p-3 m-3">
+                    <div class="flex-row justify-content-between">
+                        <strong><%= comment.content %></strong>
+                        <div>BY: <%= comment.user.name %></div>
+                    </div>
+                    <!-- Button For the Author of the Comment -->
+                    <% if(locals.user &&locals.user['id']===comment.user.id) {%>
+                        <div class="m-2 d-flex flex-row-reverse justify-content-around">
+                            <a style="text-decoration: none" href="/comments/edit/<%= comment.id%>">
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </a>
+                            <a style="text-decoration: none" href="/comments/delete/<%= comment.id%>">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </a>
+                        </div>
+                    <% } %>
+                </div>
+            </li>
+        <% } %>

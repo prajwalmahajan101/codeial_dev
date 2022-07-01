@@ -1,0 +1,11 @@
+<div class="d-block card m-3 p-3" >
+    <form action="/comments/create" id="new-post-form" method="post">
+        <div class="m-3">
+            <input type="hidden" name="post_id" value="<%= post._id%>">
+            <textarea class="form-control" name="content" id="post" placeholder="Type Your comments Here..." required></textarea>
+        </div>
+        <div class="mb-2 d-flex flex-row-reverse">
+            <button type="submit" class="btn btn-primary">Comment</button>
+        </div>
+    </form>
+</div>

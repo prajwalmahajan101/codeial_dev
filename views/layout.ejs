@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Google Recaptcha JS File-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- Noty  files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" integrity="sha512-0p3K0H3S6Q4bEWZ/WmC94Tgit2ular2/n0ESdfEX8l172YyQj8re1Wu9s/HT9T/T2osUw5Gx/6pAZNk3UKbESw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="/lib/noty.css">
+    <!-- Bootstrap Css file -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- footer Css file -->
+    <link rel="stylesheet" href="/css/footer.css">
+    <!-- import Styles form the files-->
+    <%- style %>
+    <style>
+        .space1709{
+            height: 70px;
+            white-space: nowrap;
+        }
+    </style>
+    <title><%= title %></title>
+</head>
+<body >
+<!-- Header -->
+<%- include('./partials/__header')%>
+<div class="m-1 space1709"></div>
+
+<!--Part to filled in the Layout-->
+<%- body %>
+<div class="m-1 space1709"></div>
+<%- include('./partials/__footer')%>
+<!--Bootstrap Js File-->
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+<!--Import Scripts-->
+<%- script %>
+<script>
+    let s = new Audio('/audio/s.mp3')
+    s.play()
+    <% if (flash.success && flash.success.length >0) {%>
+        new Noty({
+            theme:'relax',
+            text:'<%= flash.success%>',
+            type:'success',
+            layout:'topRight',
+            timeout:2000,
+        }).on('onShow', function() {
+                let audio = new Audio('/audio/noty.mp3');
+                audio.play();
+    }).show()
+    <% } %>
+    <% if (flash.error && flash.error.length >0) {%>
+    new Noty({
+        theme:'relax',
+        text:'<%= flash.error%>',
+        type:'error',
+        layout:'topRight',
+        timeout:2000
+    }).on('onShow', function() {
+        let audio = new Audio('/audio/noty.mp3');
+        audio.play();
+    }).show()
+    <% } %>
+    <% if (flash.info && flash.info.length >0) {%>
+    new Noty({
+        theme:'relax',
+        text:'<%= flash.info%>',
+        type:'info',
+        layout:'topRight',
+        timeout:2000
+    }).on('onShow', function() {
+        let audio = new Audio('/audio/noty.mp3');
+        audio.play();
+    }).show()
+    <% } %>
+    function validateRecaptcha() {
+        let response = grecaptcha.getResponse();
+        if (response.length === 0) {
+            new Noty({
+                theme: 'relax',
+                text: 'ReCaptcha Not validated',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 2000
+            }).on('onShow', function () {
+                let audio = new Audio('/audio/noty.mp3');
+                audio.play();
+            }).show()
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+</script>
+</body>
+</html>

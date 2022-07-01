@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/css/home.css">
+<div class="container-fluid">
+    <div class="row justify-content-around">
+        <div class="col-9">
+            <% if (locals.user) {%>
+                <!-- Post Creation Form -->
+                <%- include('./partials/__post_create_form')%>
+            <% } %>
+                <!-- Posts List -->
+                <div class="container col-11 p-1"  id="posts-list-container">
+                    <ul id="post-list" style="list-style: none" class="d-flex flex-column justify-content-center p-2" >
+                        <%- include('./partials/__posts_list')%>
+                    </ul>
+                </div>
+        </div>
+        <div class="col-2" style="border: 5px solid grey">
+            <h2 class="text-center">Users List </h2>
+            <div class="container-fluid" style="width: 100%; border-top: 5px solid black; padding-top: 10%">
+                <% if (locals.user) {%>
+                    <% for (user_k of users) {%>
+                        <a class="text-decoration-none text-danger" href="/users/profile/<%= user_k.id%>">
+                            <%= user_k.name%>
+                        </a>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+

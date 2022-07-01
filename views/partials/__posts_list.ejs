@@ -1,0 +1,41 @@
+<% if (posts.length>0) {%>
+
+        <% for (post of posts) {%>
+        <li class="col-11 ">
+            <div class="card m-3 darkborder">
+                <div class="flex-row justify-content-between h3 p-3 m-3">
+                    <strong><%= post.content %></strong>
+                    <div>BY: <%= post.user.name %></div>
+                </div>
+                <!-- Buttons for Author of Post -->
+                <% if(locals.user && locals.user['id']===post.user.id) {%>
+                    <div class="m-2 d-flex flex-row-reverse justify-content-around">
+                        <a style="text-decoration: none" href="/posts/edit/<%= post.id%>">
+                            <button type="submit" class="btn btn-primary">Edit</button>
+                        </a>
+                        <a style="text-decoration: none" href="/posts/destroy/<%= post.id%>">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </a>
+                    </div>
+                <% } %>
+
+                <% if (locals.user) {%>
+                    <!-- Comment creation Form  -->
+                    <%- include('./__comment_create_form')%>
+                <% } %>
+                    <!-- Comments List For the Post -->
+                <div class="d-block" style="border-top: 2px solid grey">
+                    <h3 class="m-3">Comments :</h3>
+                    <ul id="comments-<%= post.id%>>" style="list-style: none">
+                        <% if (post.comments.length>0 ) { %>
+                            <%- include('./__comments_list')%>
+                        <%}%>
+                    </ul>
+                </div>
+
+
+            </div>
+        </li>
+        <% } %>
+
+<% } %>
